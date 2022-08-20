@@ -1,7 +1,23 @@
-import '../styles/globals.css'
+import { useEffect, useState } from "react";
+
+import { SocketContext } from "../utils/context";
+import { initSocket } from "../utils/socket";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const [socket, setSocket] = useState();
+
+  useEffect(() => {
+    initSocket().then(socket => {
+      setSocket(socket);
+    });
+  }, []);
+
+  return (
+    <SocketContext.Provider value={socket}>
+      <Component {...pageProps} />
+    </SocketContext.Provider>
+  );
 }
 
-export default MyApp
+export default MyApp;
