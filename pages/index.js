@@ -12,8 +12,9 @@ export default function Home() {
   const handleSubmit = e => {
     e.preventDefault();
     localStorage.setItem("userName", userName);
-    socket.emit("newUser", { userName, socketID: socket.id });
-    router.push("/chat");
+    router.push("/chat").then(() => {
+      socket.emit("newUser", { userName, socketID: socket.id });
+    });
   };
 
   return (

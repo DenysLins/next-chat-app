@@ -8,7 +8,6 @@ const ChatBar = ({ socket }) => {
   useEffect(() => {
     if (socket) {
       socket.on("newUserResponse", data => {
-        console.log(data);
         setUsers(data);
       });
     }
