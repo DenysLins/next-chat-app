@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import styles from "../styles/ChatBody.module.css";
-const ChatBody = ({ messages }) => {
+
+const ChatBody = ({ messages, lastMessageRef, socket }) => {
   const router = useRouter();
+  const [userTyping, setUserTyping] = useState("");
 
   const handleLeaveChat = () => {
     localStorage.removeItem("userName");
@@ -10,6 +13,18 @@ const ChatBody = ({ messages }) => {
       router.reload();
     });
   };
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("userStartsTyping", data => {
+        setUserTyping(data);
+      });
+
+      socket.on("userStopsTyping", () => {
+        setUserTyping("");
+      });
+    }
+  }, [socket, userTyping]);
 
   return (
     <>
@@ -40,8 +55,10 @@ const ChatBody = ({ messages }) => {
         )}
 
         <div className={styles.message__status}>
-          <p>Someone is typing...</p>
+          <p>{userTyping}</p>
         </div>
+
+        <div ref={lastMessageRef} />
       </div>
     </>
   );

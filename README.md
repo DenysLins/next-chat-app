@@ -1,3 +1,5 @@
+This project was based on the following article: [https://dev.to/novu/building-a-chat-app-with-socketio-and-react-2edj](https://dev.to/novu/building-a-chat-app-with-socketio-and-react-2edj)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
