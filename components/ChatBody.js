@@ -6,8 +6,9 @@ const ChatBody = ({ messages }) => {
 
   const handleLeaveChat = () => {
     localStorage.removeItem("userName");
-    router.push("/");
-    window.location.reload();
+    router.push("/").then(() => {
+      router.reload();
+    });
   };
 
   return (

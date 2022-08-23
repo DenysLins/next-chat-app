@@ -8,7 +8,6 @@ const messageHandler = (io, socket) => {
 
   socket.on("newUser", data => {
     users.push(data);
-    console.log(users);
     io.emit("newUserResponse", users);
   });
 
@@ -19,7 +18,6 @@ const messageHandler = (io, socket) => {
   socket.on("disconnect", () => {
     console.log(`${socket.id} disconnected!`);
     users = users.filter(user => user.socketID !== socket.id);
-    console.log(users);
     io.emit("newUserResponse", users);
     socket.disconnect();
   });
@@ -28,11 +26,6 @@ const messageHandler = (io, socket) => {
 const initSocket = async () => {
   await fetch(constants.SOCKET_PATH);
   const socket = socketIO();
-
-  socket.on("connect", () => {
-    console.log("Socket Connected!");
-  });
-
   return socket;
 };
 
