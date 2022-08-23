@@ -15,6 +15,14 @@ const messageHandler = (io, socket) => {
     io.emit("messageResponse", data);
   });
 
+  socket.on("startTyping", data => {
+    socket.broadcast.emit("userStartsTyping", data);
+  });
+
+  socket.on("stopTyping", () => {
+    socket.broadcast.emit("userStopsTyping");
+  });
+
   socket.on("disconnect", () => {
     console.log(`${socket.id} disconnected!`);
     users = users.filter(user => user.socketID !== socket.id);

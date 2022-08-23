@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "../styles/ChatFooter.module.css";
 
@@ -17,6 +17,19 @@ const ChatFooter = ({ socket }) => {
     }
     setMessage("");
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      socket.emit("stopTyping");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [socket, message]);
+
+  const handleStartTyping = e => {
+    socket.emit("startTyping", `${localStorage.getItem("userName")} is typing`);
+  };
+
   return (
     <div className={styles.chat__footer}>
       <form className={styles.form} onSubmit={handleSendMessage}>
@@ -26,6 +39,7 @@ const ChatFooter = ({ socket }) => {
           className={styles.message}
           value={message}
           onChange={e => setMessage(e.target.value)}
+          onKeyDown={() => handleStartTyping()}
         />
         <button className={styles.sendBtn}>SEND</button>
       </form>
