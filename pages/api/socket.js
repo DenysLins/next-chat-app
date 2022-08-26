@@ -1,7 +1,5 @@
-import { Server } from "Socket.IO";
+import { Server } from "socket.io";
 import { messageHandler } from "../../utils/socket";
-
-let users = [];
 
 const SocketHandler = (req, res) => {
   if (res.socket.server.io) {
