@@ -24,7 +24,7 @@ jobs:
           yarn
 
       - name: Remove messages
-        run: rm ./storage/messages.json
+        run: rm ./store/messages.json
 
       - name: Reset messages
         run: node reset.js
