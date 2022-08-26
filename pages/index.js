@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 
-import { SocketContext } from "../utils/context";
+import { SocketContext } from "../store/context";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { SocketContext } from "../utils/context";
+import { SocketContext } from "../store/context";
 import { initSocket } from "../utils/socket";
 import "../styles/globals.css";
 
