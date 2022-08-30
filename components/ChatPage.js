@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect, useRef } from "react";
+import axios from "axios";
 
 import { SocketContext } from "../store/context";
-import constants from "../utils/constants";
 import styles from "../styles/ChatPage.module.css";
 
 import ChatBar from "./ChatBar";
@@ -22,12 +22,12 @@ const ChatPage = () => {
   }, [socket, messages]);
 
   useEffect(() => {
-    function fetchMessages() {
-      fetch(`${constants.SERVER_URL}/api`)
-        .then(response => response.json())
-        .then(data => setMessages(data.messages));
-    }
-    fetchMessages();
+    axios
+      .get("/api/messages")
+      .then(res => setMessages(res.data))
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {

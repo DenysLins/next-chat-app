@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
+import socketIO from "socket.io-client";
+import axios from "axios";
 
 import { SocketContext } from "../store/context";
-import { initSocket } from "../utils/socket";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    initSocket().then(socket => {
-      setSocket(socket);
-    });
+    axios.get("/api/socket");
+    const socket = new socketIO();
+    setSocket(socket);
   }, []);
 
   return (

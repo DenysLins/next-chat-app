@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import styles from "../styles/ChatBar.module.css";
 
@@ -12,6 +13,15 @@ const ChatBar = ({ socket }) => {
       });
     }
   }, [socket, users]);
+
+  useEffect(() => {
+    axios
+      .get("/api/users")
+      .then(res => setUsers(res.data))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className={styles.chat__sidebar}>

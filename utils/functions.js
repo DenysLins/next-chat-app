@@ -20,12 +20,12 @@ function sendNotification(message, user) {
   document.onvisibilitychange = () => {
     if (document.hidden) {
       const notification = new Notification("New message from Open Chat", {
-        icon: `${constants.SERVER_URL}/733585.png`,
+        icon: `${constants.NEXT_PUBLIC_VERCEL_URL}/733585.png`,
         body: `@${user}: ${message}`
       });
       notification.onclick = () =>
         function () {
-          window.open(`${constants.SERVER_URL}/chat`);
+          window.open(`${constants.NEXT_PUBLIC_VERCEL_URL}/chat`);
         };
     }
   };

@@ -23,7 +23,7 @@ const ChatFooter = ({ socket }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       socket.emit("stopTyping");
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [socket, message]);

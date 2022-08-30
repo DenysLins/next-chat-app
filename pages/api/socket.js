@@ -3,7 +3,6 @@ import { messageHandler } from "../../utils/socket";
 
 const SocketHandler = (req, res) => {
   if (res.socket.server.io) {
-    console.log("Socket is already running!");
     res.end();
     return;
   }
@@ -15,7 +14,6 @@ const SocketHandler = (req, res) => {
     messageHandler(io, socket);
   });
 
-  console.log("Socket is initializing!");
   res.end();
 };
 
