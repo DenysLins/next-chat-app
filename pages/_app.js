@@ -9,9 +9,10 @@ function MyApp({ Component, pageProps }) {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    axios.get("/api/socket");
-    const socket = new socketIO();
-    setSocket(socket);
+    axios.get("/api/socket").then(() => {
+      const socket = new socketIO();
+      setSocket(socket);
+    });
   }, []);
 
   return (
